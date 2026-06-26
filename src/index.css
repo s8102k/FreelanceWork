@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Epilogue:ital,wght@0,100..900;1,100..900&family=Inter:wght@100..900&family=Italianno&family=Manrope:wght@200..800&family=Poppins:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap');
+@import "tailwindcss";
+
+/* Custom Keyframe Animations */
+@keyframes infinite-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes marquee-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes spin-slow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(3deg);
+  }
+}
+
+@keyframes float-delayed {
+  0%, 100% {
+    transform: translateY(0px) rotate(12deg);
+  }
+  50% {
+    transform: translateY(12px) rotate(6deg);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom Utilities for Animations */
+.animate-infinite-scroll {
+  animation: infinite-scroll 35s linear infinite;
+}
+
+.animate-marquee-right {
+  animation: marquee-right 30s linear infinite alternate;
+}
+
+.animate-marquee-left {
+  animation: marquee-left 30s linear infinite alternate;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-delayed 7s ease-in-out infinite;
+}
+
+@keyframes infinite-scroll-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-infinite-scroll-right {
+  animation: infinite-scroll-right 35s linear infinite;
+}
+
+/* Continuous seamless right-to-left logo marquee */
+@keyframes logo-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-logo-marquee {
+  animation: logo-marquee 15s linear infinite;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out forwards;
+}
+
+/* Custom Scrollbar styling */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Read More hover button with arrow slide-in effect */
+.read-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  color: #2dd36f;
+  background-color: transparent;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 8px 16px;
+  margin-left: -16px;
+  border-radius: 9999px;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  user-select: none;
+}
+
+.read-more-btn:hover {
+  background-color: #2dd36f;
+  color: #0d1a1a;
+  gap: 8px;
+}
+
+.read-more-btn .arrow-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.read-more-btn:hover .arrow-icon {
+  width: 16px;
+  opacity: 1;
+}
+
+/* Outline text styling */
+.text-outline {
+  -webkit-text-stroke: 1.5px #111;
+  color: transparent;
+}
+
+/* Hero Hover Doodles */
+.hero-hover-container {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.hero-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  transition: transform 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.hero-hover-container:hover .hero-content-wrapper {
+  transform: translateY(40px);
+}
+
+.hero-doodle {
+  position: absolute;
+  opacity: 0;
+  transition: all 1.5s cubic-bezier(0.25, 1, 0.5, 1); /* Slow motion fade and slide */
+  pointer-events: none; /* Don't block hover */
+}
+
+/* Reveal on hover */
+.hero-hover-container:hover .hero-doodle {
+  opacity: 1;
+}
+
+/* Specific doodle transforms for outwards pop */
+/* Top-Left: starts slightly bottom-right, moves to 0,0 (up-left) */
+.doodle-tl {
+  transform: translate(30px, 30px);
+}
+.hero-hover-container:hover .doodle-tl {
+  transform: translate(0, 0);
+}
+
+/* Top-Right: starts slightly bottom-left, moves to 0,0 (up-right) */
+.doodle-tr {
+  transform: translate(-30px, 30px);
+}
+.hero-hover-container:hover .doodle-tr {
+  transform: translate(0, 0);
+}
+
+/* Bottom-Left: starts slightly top-right, moves to 0,0 (down-left) */
+.doodle-bl {
+  transform: translate(30px, -30px);
+}
+.hero-hover-container:hover .doodle-bl {
+  transform: translate(0, 0);
+}
+
+/* Bottom-Right: starts slightly top-left, moves to 0,0 (down-right) */
+.doodle-br {
+  transform: translate(-30px, -30px);
+}
+.hero-hover-container:hover .doodle-br {
+  transform: translate(0, 0);
+}
