@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, useMotionValue, useTransform, useReducedMotion, useSpring } from 'framer-motion';
+// @ts-ignore
 import Lenis from 'lenis/dist/lenis.mjs';
 import img1 from '../assets/img1.png';
 import img2 from '../assets/img2.png';
@@ -42,33 +43,98 @@ import stickerNiceWork from '../assets/sticker_nice_work.png';
 import stickerAwesome from '../assets/sticker_awesome.png';
 import stickerYouDidIt from '../assets/sticker_you_did_it.png';
 
+// Team and News section assets
+import imgAkshay from '../assets/figma_images/4e23c508ccad58251ee69768e4be40ccae72a5b1.png';
+import imgKunal from '../assets/figma_images/e8d5a07da942473006638f4e994787d52f5c98f3.png';
+import imgPratab from '../assets/figma_images/8712c4464d336ec0164e1e405da31c462603b11f.png';
+import imgAnuj from '../assets/figma_images/e3310c799411eebe9d944fdabd59f62b2133e1ff.png';
+import imgCredLogoSmall from '../assets/figma_images/8f31b424582e9dd8f362e950be92551b19f89a85.png';
+import imgMeeshoLogoSmall from '../assets/figma_images/29ce7b4d63e56580d68cc6a3d50a759a2ab0e0a2.png';
+import imgETScreenshot from '../assets/figma_images/d847da7b021e6456d75f9e4864d355b5de4b4921.png';
+import imgTOIScreenshot from '../assets/figma_images/91fa6aa524a91f739ff4db8aa0507e19c211ca11.png';
+import imgInc42Screenshot from '../assets/figma_images/92f7f58a86fd3b950f535009b60f9093c002bbcc.png';
+import imgYSScreenshot from '../assets/figma_images/51f74586c8cff6149037e6bedc3930b6669925f0.png';
+import imgETLogo from '../assets/figma_images/6ff52c71afcec8e5cf6a741e769e98c32ed96b1e.png';
+import imgTOILogo from '../assets/figma_images/56e3d2c8f2975b2f3a358640039bba1d7914246d.png';
+import imgInc42Logo from '../assets/figma_images/19600d99e9c82675928ba6d13bc124f2bb81b9c3.png';
+import imgYSLogo from '../assets/figma_images/a264e8f0ec937bdb339146094333ae7d525249b4.png';
+import imgWaveBottom from '../assets/wave.png';
+
+// New layout section assets
+import imgIconClean from '../assets/figma_images/e48233df128631eb75690f4fb7a5d45d15335e47.png';
+import imgIconSEO from '../assets/figma_images/737dbd4184d1b9e75614ddbb94a28bcf728c2175.png';
+import imgIconResearch from '../assets/figma_images/1eb3bce551928ddf2f3e7e46f2f0fcf13d4b36c3.png';
+import imgIconTraffic from '../assets/figma_images/dde81aa13527aebf06e6e362ccdb6a080fb78b4f.png';
+import imgIconBriefing from '../assets/figma_images/4f07965b8a9c0ae26eb3edac8237119dec538b29.png';
+import imgIconQuality from '../assets/figma_images/a7a795496c001ced73aeea301ee04a171dc845eb.png';
+import imgErrorsRobot from '../assets/Group_8361.svg';
+import imgHiringCardGroup from '../assets/image16.png';
+import imgCtaAirplane from '../assets/image17.png';
+
+// Blogs
+import imgBlogDetailDelight from '../assets/figma_images/009533ddb18880647940253fa905f2a8d6a3a95e.png';
+import imgBlogDetailMapping from '../assets/figma_images/c220b565fba3f3369a85cb9bd4d04bf17c85be21.png';
+import imgBlogDetailAgile from '../assets/figma_images/9ca412fa840de131974162b09d68033e23a850b5.png';
+
+// Branding On Demand Card images
+import imgServices from '../assets/image14.png';
+import imgJoinUs from '../assets/image15.png';
+import imgHiring from '../assets/image16.png';
+import imgCTA from '../assets/image17.png';
+
+
 // Icons and SVGs
-const imgArrowDown = "http://localhost:9013/assets/bcd67fb81bafd311876b872f574da82b350557b4.svg";
+// const imgArrowDown = "http://localhost:9013/assets/bcd67fb81bafd311876b872f574da82b350557b4.svg";
 
 // Cards images
-const imgImage13 = "http://localhost:9013/assets/ebd82cd3b56560730d12f6252e1476c6755068eb.png";
-const imgImage14 = "http://localhost:9013/assets/3544a730e2a573f03c2bbbc1014ced7d9760aac2.png";
-const imgImage15 = "http://localhost:9013/assets/d7c7f76296f891e8241f91f6bea6cce774dbda88.png";
-const imgImage16 = "http://localhost:9013/assets/53f0465993b727cb0e8563118258f156b87a5a28.png";
-const imgGroup15127 = "http://localhost:9013/assets/51959169d2428db978d9068f8b6b3d16e5de6db6.svg"; // circular text center arrow
+// const imgImage13 = "http://localhost:9013/assets/ebd82cd3b56560730d12f6252e1476c6755068eb.png";
+// const imgImage14 = "http://localhost:9013/assets/3544a730e2a573f03c2bbbc1014ced7d9760aac2.png";
+// const imgImage15 = "http://localhost:9013/assets/d7c7f76296f891e8241f91f6bea6cce774dbda88.png";
+// const imgImage16 = "http://localhost:9013/assets/53f0465993b727cb0e8563118258f156b87a5a28.png";
+// const imgGroup15127 = "http://localhost:9013/assets/51959169d2428db978d9068f8b6b3d16e5de6db6.svg"; // circular text center arrow
 
 // Blog images
-const imgBlog1 = "http://localhost:9013/assets/009533ddb18880647940253fa905f2a8d6a3a95e.png";
-const imgBlog2 = "http://localhost:9013/assets/c220b565fba3f3369a85cb9bd4d04bf17c85be21.png";
-const imgBlog3 = "http://localhost:9013/assets/9ca412fa840de131974162b09d68033e23a850b5.png";
+// const imgBlog1 = "http://localhost:9013/assets/009533ddb18880647940253fa905f2a8d6a3a95e.png";
+// const imgBlog2 = "http://localhost:9013/assets/c220b565fba3f3369a85cb9bd4d04bf17c85be21.png";
+// const imgBlog3 = "http://localhost:9013/assets/9ca412fa840de131974162b09d68033e23a850b5.png";
 
 // CTA Assets
-const imgCombinedShape9 = "http://localhost:9013/assets/9989e550043c7b0a22dbda4627d61ded4333ec15.svg";
-const imgCombinedShape10 = "http://localhost:9013/assets/284976a07bac044dadc4a723b5517eadcb7c6614.svg";
-const imgBlock = "http://localhost:9013/assets/7c5960c54678dae74172714524c3bf9c97cd6f12.svg";
-const imgStar = "http://localhost:9013/assets/6d29adeaa3a5421e09c3b6ef994be6117b090d4a.svg";
+// const imgCombinedShape9 = "http://localhost:9013/assets/9989e550043c7b0a22dbda4627d61ded4333ec15.svg";
+// const imgCombinedShape10 = "http://localhost:9013/assets/284976a07bac044dadc4a723b5517eadcb7c6614.svg";
+// const imgBlock = "http://localhost:9013/assets/7c5960c54678dae74172714524c3bf9c97cd6f12.svg";
+// const imgStar = "http://localhost:9013/assets/6d29adeaa3a5421e09c3b6ef994be6117b090d4a.svg";
 
 interface HomeProps {
   setActiveTab: (tab: string) => void;
 }
 
 export default function Home({ setActiveTab }: HomeProps) {
-  const [activeFaq, setActiveFaq] = useState<number | null>(null);
+//   const [activeFaq, setActiveFaq] = useState<number | null>(null);
+  const [openFAQIndex, setOpenFAQIndex] = useState<number | null>(null);
+  
+  const faqs = [
+    {
+      q: "What types of services do you offer?",
+      a: "We offer comprehensive digital design and branding solutions, including visual identity systems, website design & development, UI/UX optimization, SEO/SMO, and strategic creative direction."
+    },
+    {
+      q: "How does the Unlimited Branding plan work?",
+      a: "Our unlimited branding subscription allows you to request as many design tasks as you need. We deliver them sequentially, one by one, with standard turnarounds of 1-2 business days per task."
+    },
+    {
+      q: "Can I cancel my subscription at any time?",
+      a: "Yes, you can pause or cancel your subscription at any time with no lock-in contracts or hidden cancellation fees."
+    },
+    {
+      q: "What is your typical turnaround time?",
+      a: "Most design requests (landing pages, social creatives, icons, etc.) are completed within 24-48 hours. Larger projects like complex web apps are broken down into smaller milestones."
+    },
+    {
+      q: "Who actually designs my assets?",
+      a: "Your assets are designed by our highly skilled, in-house team of senior creative designers, developers, and product marketing specialists."
+    }
+  ];
+
   const shouldReduceMotion = useReducedMotion();
 
   // Mouse Parallax Setup
@@ -82,11 +148,11 @@ export default function Home({ setActiveTab }: HomeProps) {
   const heroX = useTransform(smoothMouseX, [-0.5, 0.5], [-4, 4]);
   const heroY = useTransform(smoothMouseY, [-0.5, 0.5], [-4, 4]);
 
-  const cardX = useTransform(smoothMouseX, [-0.5, 0.5], [-8, 8]);
-  const cardY = useTransform(smoothMouseY, [-0.5, 0.5], [-8, 8]);
+//   const cardX = useTransform(smoothMouseX, [-0.5, 0.5], [-8, 8]);
+//   const cardY = useTransform(smoothMouseY, [-0.5, 0.5], [-8, 8]);
 
-  const bgX = useTransform(smoothMouseX, [-0.5, 0.5], [-2, 2]);
-  const bgY = useTransform(smoothMouseY, [-0.5, 0.5], [-2, 2]);
+//   const bgX = useTransform(smoothMouseX, [-0.5, 0.5], [-2, 2]);
+//   const bgY = useTransform(smoothMouseY, [-0.5, 0.5], [-2, 2]);
 
   useEffect(() => {
     // Initialize Lenis for smooth scroll
@@ -135,13 +201,6 @@ export default function Home({ setActiveTab }: HomeProps) {
     imgOracleWebp, imgIbmWebp
   ];
 
-
-  const faqs = [
-    { q: "Do you provide a Digital Marketing?", a: "Yes, we provide fully managed digital marketing services including SEO, SMO, search ads, and branding outreach." },
-    { q: "What kind of jobs will candidates get at the end of the program?", a: "Candidates are placed into high-growth startup positions, product management, visual design, or core technical dev tracks." },
-    { q: "Why is this program in-person and not online?", a: "Our in-person model facilitates close collaboration, structured mentoring sessions, and intense startup ecosystem integration." },
-    { q: "How do I apply for marketing team?", a: "You can apply directly via our careers page or send your portfolio to careers@digitalmafia.com." }
-  ];
   const row1 = [img6, img3, img9, img12];
   const row2 = [img5, img2, img8, img11];
   const row3 = [img4, img1, img7, img10];
@@ -272,7 +331,7 @@ export default function Home({ setActiveTab }: HomeProps) {
                 Clut
                 <span className="relative inline-block leading-none">
                   c
-                  <span className="absolute w-[8px] h-[8px] bg-[#da3838] rounded-full top-[50%] left-[55%] -translate-x-1/2 -translate-y-[20%]"></span>
+                  <span className="absolute w-[8px] h-[8px] bg-[#da3838] rounded-full top-[50%] left-[55%] -translate-x-1/2 translate-y-[-20%]"></span>
                 </span>
                 h
               </div>
@@ -402,10 +461,10 @@ export default function Home({ setActiveTab }: HomeProps) {
               ].map((service, idx) => (
                 <div
                   key={idx}
-                  className="bg-[#132222] border border-white/[0.06] hover:border-[#2dd36f]/30 rounded-[24px] p-8 md:p-10 flex flex-col items-start min-h-[380px] md:min-h-[460px] transition-all duration-300 hover:translate-y-[-4px] hover:shadow-[0_10px_30px_rgba(13,26,26,0.5)] group"
+                  className="bg-[#132222] border border-white/6 hover:border-[#2dd36f]/30 rounded-[24px] p-8 md:p-10 flex flex-col items-start min-h-[380px] md:min-h-[460px] transition-all duration-300 hover:translate-y-[-4px] hover:shadow-[0_10px_30px_rgba(13,26,26,0.5)] group"
                 >
                   {/* Warning/Info Icon */}
-                  <div className="w-12 h-12 rounded-[12px] border border-white/10 bg-white/[0.02] flex items-center justify-center mb-8">
+                  <div className="w-12 h-12 rounded-[12px] border border-white/10 bg-white/2 flex items-center justify-center mb-8">
                     <svg className="w-5 h-5 text-white/60 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
                       <circle cx="12" cy="12" r="10" />
                       <path d="M12 8v4M12 16h.01" strokeLinecap="round" />
@@ -568,7 +627,7 @@ export default function Home({ setActiveTab }: HomeProps) {
             {/* Column 1 - shifted down */}
             <div className="flex flex-col gap-6 lg:mt-24">
               {/* Card 1.1 */}
-              <div className="relative w-full aspect-[3/4] rounded-[20px] overflow-hidden group cursor-pointer">
+              <div className="relative w-full aspect-3/4 rounded-[20px] overflow-hidden group cursor-pointer">
                 <img src={photo1} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Touchp" />
                 {/* Center Hand and Text Overlay */}
                 <div className="absolute inset-0">
@@ -588,7 +647,7 @@ export default function Home({ setActiveTab }: HomeProps) {
                 </div>
               </div>
               {/* Card 1.2 */}
-              <div className="relative w-full aspect-[3/4] rounded-[20px] overflow-hidden group cursor-pointer">
+              <div className="relative w-full aspect-3/4 rounded-[20px] overflow-hidden group cursor-pointer">
                 <img src={photo1} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Touchp" />
                 {/* Center Hand and Text Overlay */}
                 <div className="absolute inset-0">
@@ -615,7 +674,7 @@ export default function Home({ setActiveTab }: HomeProps) {
               <div
                 onMouseEnter={() => setHoveredMars(true)}
                 onMouseLeave={() => setHoveredMars(false)}
-                className="relative w-full aspect-[3/4] rounded-[20px] cursor-pointer overflow-hidden group z-10"
+                className="relative w-full aspect-3/4 rounded-[20px] cursor-pointer overflow-hidden group z-10"
               >
                 <img src={photo2} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Mars" />
                 <div className="absolute bottom-6 left-6 text-white text-[12px] font-semibold tracking-wide select-none">
@@ -623,7 +682,7 @@ export default function Home({ setActiveTab }: HomeProps) {
                 </div>
               </div>
               {/* Card 2.2 */}
-              <div className="relative w-full aspect-[3/4] rounded-[20px] overflow-hidden group cursor-pointer">
+              <div className="relative w-full aspect-3/4 rounded-[20px] overflow-hidden group cursor-pointer">
                 <img src={photo2} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Mars" />
                 <div className="absolute bottom-6 left-6 text-white text-[12px] font-semibold tracking-wide select-none">
                   &gt; Typography
@@ -637,7 +696,7 @@ export default function Home({ setActiveTab }: HomeProps) {
               <div
                 onMouseEnter={() => setTestedGlow(true)}
                 onMouseLeave={() => setTestedGlow(false)}
-                className="relative w-full aspect-[3/4] rounded-[20px] cursor-pointer overflow-hidden group z-10"
+                className="relative w-full aspect-3/4 rounded-[20px] cursor-pointer overflow-hidden group z-10"
               >
                 <img src={photo3} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Tested on Animals" />
                 <div className="absolute bottom-6 left-6 text-[#132222]/80 text-[12px] font-semibold tracking-wide select-none">
@@ -645,7 +704,7 @@ export default function Home({ setActiveTab }: HomeProps) {
                 </div>
               </div>
               {/* Card 3.2 */}
-              <div className="relative w-full aspect-[3/4] rounded-[20px] cursor-pointer overflow-hidden group">
+              <div className="relative w-full aspect-3/4 rounded-[20px] cursor-pointer overflow-hidden group">
                 <img src={photo3} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Tested on Animals" />
                 <div className="absolute bottom-6 left-6 text-[#132222]/80 text-[12px] font-semibold tracking-wide select-none">
                   &gt; Ad design
@@ -659,7 +718,7 @@ export default function Home({ setActiveTab }: HomeProps) {
               <div
                 onMouseEnter={() => setPhotoshopGlow(true)}
                 onMouseLeave={() => setPhotoshopGlow(false)}
-                className="relative w-full aspect-[3/4] rounded-[20px] cursor-pointer overflow-hidden group z-10"
+                className="relative w-full aspect-3/4 rounded-[20px] cursor-pointer overflow-hidden group z-10"
               >
                 <img src={photo4} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Photoshop editing" />
                 <div className="absolute bottom-6 left-6 text-white text-[12px] font-semibold tracking-wide select-none">
@@ -667,7 +726,7 @@ export default function Home({ setActiveTab }: HomeProps) {
                 </div>
               </div>
               {/* Card 4.2 */}
-              <div className="relative w-full aspect-[3/4] rounded-[20px] overflow-hidden group">
+              <div className="relative w-full aspect-3/4 rounded-[20px] overflow-hidden group">
                 <img src={photo4} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Photoshop editing" />
                 <div className="absolute bottom-6 left-6 text-white text-[12px] font-semibold tracking-wide select-none">
                   &gt; Photoshop editing
@@ -678,7 +737,7 @@ export default function Home({ setActiveTab }: HomeProps) {
             {/* Column 5 - shifted down */}
             <div className="flex flex-col gap-6 lg:mt-24">
               {/* Card 5.1 */}
-              <div className="relative w-full aspect-[3/4] rounded-[20px] bg-[#132222] border border-white/[0.04] p-6 flex flex-col justify-between overflow-hidden group">
+              <div className="relative w-full aspect-3/4 rounded-[20px] bg-[#132222] border border-white/4 p-6 flex flex-col justify-between overflow-hidden group">
                 <div className="flex-1 flex items-center justify-center select-none overflow-hidden mt-2">
                   <img src={photo5} className="max-h-[85%] max-w-full object-contain rounded-sm shadow-md group-hover:scale-105 transition-transform duration-500" alt="E-book cover" />
                 </div>
@@ -687,7 +746,7 @@ export default function Home({ setActiveTab }: HomeProps) {
                 </div>
               </div>
               {/* Card 5.2 */}
-              <div className="relative w-full aspect-[3/4] rounded-[20px] bg-[#132222] border border-white/[0.04] p-6 flex flex-col justify-between overflow-hidden group">
+              <div className="relative w-full aspect-3/4 rounded-[20px] bg-[#132222] border border-white/4 p-6 flex flex-col justify-between overflow-hidden group">
                 <div className="flex-1 flex items-center justify-center select-none overflow-hidden mt-2">
                   <img src={photo5} className="max-h-[85%] max-w-full object-contain rounded-sm shadow-md group-hover:scale-105 transition-transform duration-500" alt="E-book cover" />
                 </div>
@@ -841,10 +900,10 @@ export default function Home({ setActiveTab }: HomeProps) {
               {"Over 800 Client Testimonials and Success stories"}
             </span>
           </div>
-          <div className="flex flex-col lg:flex-row items-center lg:items-start self-stretch max-w-[1180px] relative py-[1px] mb-12 mx-auto gap-20 lg:gap-0 px-6 lg:px-0">
+          <div className="flex flex-col lg:flex-row items-center lg:items-start self-stretch max-w-[1180px] relative py-px mb-12 mx-auto gap-20 lg:gap-0 px-6 lg:px-0">
 
             {/* Card 1 */}
-            <div className="flex flex-col items-start relative pt-[19px] pr-[0px] lg:pr-[30px] mr-[0px] lg:mr-[26px] w-full max-w-[360px] lg:max-w-none lg:flex-1">
+            <div className="flex flex-col items-start relative pt-[19px] pr-0 lg:pr-[30px] mr-0 lg:mr-[26px] w-full max-w-[360px] lg:max-w-none lg:flex-1">
               <div className="flex flex-col items-start self-stretch gap-[31px]">
                 <span className="text-[#7A7A7A] text-[11px] font-bold ml-12" >
                   {"Costumer Review"}
@@ -863,7 +922,7 @@ export default function Home({ setActiveTab }: HomeProps) {
                         className="w-[260px] h-[138px] object-fill"
                         alt=""
                       />
-                      <span className="text-[#242424] text-[34px] font-bold absolute bottom-[26px] left-0 right-0 text-center -ml-[32px]" >
+                      <span className="text-[#242424] text-[34px] font-bold absolute bottom-[26px] left-0 right-0 text-center ml-[-32px]" >
                         {"57.43%"}
                       </span>
                     </div>
@@ -920,7 +979,7 @@ export default function Home({ setActiveTab }: HomeProps) {
                               </span>
                             </div>
                           </div>
-                          <div className="bg-[#F2F2F2] w-[274px] h-[1px] absolute top-[9px] right-[-75px]">
+                          <div className="bg-[#F2F2F2] w-[274px] h-px absolute top-[9px] right-[-75px]">
                           </div>
                         </div>
                         <div className="flex items-center ml-[31px] gap-[46px]">
@@ -941,11 +1000,11 @@ export default function Home({ setActiveTab }: HomeProps) {
                         className="w-[5px] h-[133px] mt-4 mr-[17px] object-fill"
                         alt=""
                       />
-                      <div className="bg-[#F2F2F2] w-[274px] h-[1px] absolute top-[42px] right-[1px]">
+                      <div className="bg-[#F2F2F2] w-[274px] h-px absolute top-[42px] right-px">
                       </div>
-                      <div className="bg-[#F2F2F2] w-[274px] h-[1px] absolute top-[70px] right-[1px]">
+                      <div className="bg-[#F2F2F2] w-[274px] h-px absolute top-[70px] right-px">
                       </div>
-                      <div className="bg-[#F2F2F2] w-[274px] h-[1px] absolute bottom-[88px] right-[1px]">
+                      <div className="bg-[#F2F2F2] w-[274px] h-px absolute bottom-[88px] right-px">
                       </div>
                     </div>
                     <div className="flex flex-col items-center absolute top-2.5 left-0 gap-[17px]">
@@ -978,7 +1037,7 @@ export default function Home({ setActiveTab }: HomeProps) {
             </div>
 
             {/* Card 2 */}
-            <div className="flex flex-col items-start relative pt-[19px] pr-[0px] lg:pr-[30px] mr-[0px] lg:mr-[26px] w-full max-w-[360px] lg:max-w-none lg:flex-1">
+            <div className="flex flex-col items-start relative pt-[19px] pr-0 lg:pr-[30px] mr-0 lg:mr-[26px] w-full max-w-[360px] lg:max-w-none lg:flex-1">
               <div className="flex flex-col items-start self-stretch gap-[31px]">
                 <span className="text-[#7A7A7A] text-[11px] font-bold ml-12" >
                   {"Costumer Review"}
@@ -997,7 +1056,7 @@ export default function Home({ setActiveTab }: HomeProps) {
                         className="w-[260px] h-[138px] object-fill"
                         alt=""
                       />
-                      <span className="text-[#242424] text-[34px] font-bold absolute bottom-[26px] left-0 right-0 text-center -ml-[32px]" >
+                      <span className="text-[#242424] text-[34px] font-bold absolute bottom-[26px] left-0 right-0 text-center ml-[-32px]" >
                         {"77.73%"}
                       </span>
                     </div>
@@ -1059,7 +1118,7 @@ export default function Home({ setActiveTab }: HomeProps) {
                               </span>
                             </div>
                           </div>
-                          <div className="bg-[#F2F2F2] w-[274px] h-[1px] absolute top-[9px] right-[-75px]">
+                          <div className="bg-[#F2F2F2] w-[274px] h-px absolute top-[9px] right-[-75px]">
                           </div>
                         </div>
                         <div className="flex items-center ml-[31px] gap-[46px]">
@@ -1080,11 +1139,11 @@ export default function Home({ setActiveTab }: HomeProps) {
                         className="w-[5px] h-[133px] mt-4 mr-[17px] object-fill"
                         alt=""
                       />
-                      <div className="bg-[#F2F2F2] w-[274px] h-[1px] absolute top-[43px] right-[1px]">
+                      <div className="bg-[#F2F2F2] w-[274px] h-px absolute top-[43px] right-px">
                       </div>
-                      <div className="bg-[#F2F2F2] w-[274px] h-[1px] absolute top-[71px] right-[1px]">
+                      <div className="bg-[#F2F2F2] w-[274px] h-px absolute top-[71px] right-px">
                       </div>
-                      <div className="bg-[#F2F2F2] w-[274px] h-[1px] absolute bottom-[88px] right-[1px]">
+                      <div className="bg-[#F2F2F2] w-[274px] h-px absolute bottom-[88px] right-px">
                       </div>
                     </div>
                     <div className="flex flex-col items-center absolute top-[11px] left-0 gap-[17px]">
@@ -1111,7 +1170,7 @@ export default function Home({ setActiveTab }: HomeProps) {
               />
               <img
                 src={stickerYouDidIt}
-                className="absolute top-[12px] right-[6px] w-[95px] h-[95px] object-contain rotate-[12deg] z-20"
+                className="absolute top-[12px] right-[6px] w-[95px] h-[95px] object-contain rotate-12 z-20"
                 alt="You Did It"
               />
             </div>
@@ -1136,7 +1195,7 @@ export default function Home({ setActiveTab }: HomeProps) {
                         className="w-[260px] h-[138px] object-fill"
                         alt=""
                       />
-                      <span className="text-[#242424] text-[34px] font-bold absolute bottom-[26px] left-0 right-0 text-center -ml-[32px]" >
+                      <span className="text-[#242424] text-[34px] font-bold absolute bottom-[26px] left-0 right-0 text-center ml-[-32px]" >
                         {"17.80%"}
                       </span>
                     </div>
@@ -1193,7 +1252,7 @@ export default function Home({ setActiveTab }: HomeProps) {
                               </span>
                             </div>
                           </div>
-                          <div className="bg-[#F2F2F2] w-[274px] h-[1px] absolute top-[9px] right-[-75px]">
+                          <div className="bg-[#F2F2F2] w-[274px] h-px absolute top-[9px] right-[-75px]">
                           </div>
                         </div>
                         <div className="flex items-center ml-[31px] gap-[46px]">
@@ -1214,11 +1273,11 @@ export default function Home({ setActiveTab }: HomeProps) {
                         className="w-[5px] h-[133px] mt-4 mr-[17px] object-fill"
                         alt=""
                       />
-                      <div className="bg-[#F2F2F2] w-[274px] h-[1px] absolute top-[43px] right-[1px]">
+                      <div className="bg-[#F2F2F2] w-[274px] h-px absolute top-[43px] right-px">
                       </div>
-                      <div className="bg-[#F2F2F2] w-[274px] h-[1px] absolute top-[71px] right-[1px]">
+                      <div className="bg-[#F2F2F2] w-[274px] h-px absolute top-[71px] right-px">
                       </div>
-                      <div className="bg-[#F2F2F2] w-[274px] h-[1px] absolute bottom-[88px] right-[1px]">
+                      <div className="bg-[#F2F2F2] w-[274px] h-px absolute bottom-[88px] right-px">
                       </div>
                     </div>
                     <div className="flex flex-col items-center absolute top-[11px] left-0 gap-[17px]">
@@ -1548,21 +1607,718 @@ export default function Home({ setActiveTab }: HomeProps) {
         </motion.div>
 
 
-        {/* Dark Navy Bottom Wave */}
-        <motion.div 
-          initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, clipPath: 'inset(100% 0 0 0)' }}
-          whileInView={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, clipPath: 'inset(0% 0 0 0)' }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.2, ease: [0.65, 0, 0.35, 1] }}
-          style={{ width: '100%', lineHeight: 0, display: 'block' }}
-        >
-          <svg viewBox="0 0 1440 170" xmlns="http://www.w3.org/2000/svg" style={{ display: 'block', width: '100%' }} preserveAspectRatio="none">
-            <path d="M0,100 C80,160 180,30 320,90 C440,140 520,20 660,70 C780,110 860,30 980,60 C1100,90 1180,150 1280,80 C1360,30 1410,60 1440,90 L1440,170 L0,170 Z" fill="#08191D" />
-          </svg>
-        </motion.div>
 
       </section>
 
+      {/* ─────────────── SERVICES SECTION ─────────────── */}
+      <section className="bg-[#EBF8E8] w-full py-24 relative z-10 overflow-hidden">
+        <div className="w-full max-w-7xl mx-auto px-6 relative z-10">
+          <h2 className="text-[#112121] text-[32px] md:text-[42px] font-bold text-center mb-4">
+            Our <span className="text-[#35CAA3]">Services</span>
+          </h2>
+          <p className="text-[#555] text-center max-w-3xl mx-auto mb-16 text-[15px] md:text-[16px]">
+            We help ambitious businesses like yours generate more profits by building awareness, driving web traffic, etc.
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-12">
+            {/* Col 1 */}
+            <div>
+              <h3 className="text-[#112121] text-[13px] uppercase tracking-wider font-semibold mb-6">Visual Identity</h3>
+              <div className="flex flex-col gap-1">
+                <ServiceItem text="Communication" />
+                <ServiceItem text="Startup Ecosystem" />
+                <ServiceItem text="Product Management" />
+                <ServiceItem text="Startup Ecosystem" />
+                <ServiceItem text="Structured Thinking" />
+                <ServiceItem text="New Age Industries" />
+                <ServiceItem text="Data Fluency" />
+                <ServiceItem text="Business Foundation" />
+              </div>
+            </div>
+
+            {/* Col 2 */}
+            <div>
+              <h3 className="text-[#112121] text-[13px] uppercase tracking-wider font-semibold mb-6">SEO & SMO</h3>
+              <div className="flex flex-col gap-1">
+                <ServiceItem text="Communication" />
+                <ServiceItem text="Startup Ecosystem" />
+                <ServiceItem text="New Age Industries" />
+                <ServiceItem text="Data Fluency" />
+                <ServiceItem text="Sales Mentality" />
+                <ServiceItem text="Business Foundation" />
+              </div>
+            </div>
+
+            {/* Col 3 */}
+            <div>
+              <h3 className="text-[#112121] text-[13px] uppercase tracking-wider font-semibold mb-6">Website Development</h3>
+              <div className="flex flex-col gap-1">
+                <ServiceItem text="Communication" />
+                <ServiceItem text="Startup Ecosystem" />
+                <ServiceItem text="Product Management" />
+                <ServiceItem text="Startup Ecosystem" />
+                <ServiceItem text="Structured Thinking" />
+                <ServiceItem text="New Age Industries" />
+                <ServiceItem text="Data Fluency" />
+                <ServiceItem text="Sales Mentality" />
+                <ServiceItem text="Business Foundation" />
+              </div>
+            </div>
+
+            {/* Col 4 */}
+            <div>
+              <h3 className="text-[#112121] text-[13px] uppercase tracking-wider font-semibold mb-6">Marketing</h3>
+              <div className="flex flex-col gap-1">
+                <ServiceItem text="Communication" />
+                <ServiceItem text="Startup Ecosystem" />
+                <ServiceItem text="Data Fluency" />
+                <ServiceItem text="Sales Mentality" />
+                <ServiceItem text="Business Foundation" />
+              </div>
+            </div>
+          </div>
+
+          <div className="w-full h-px bg-gray-200/60 my-16" />
+
+          {/* Call to action */}
+          <div className="text-center max-w-4xl mx-auto pb-10">
+            <h3 className="text-[#112121] text-[24px] md:text-[32px] font-bold mb-4">
+              We Transform Companies Through Design Innovation
+            </h3>
+            <p className="text-gray-600 text-[14px] md:text-[15px] max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
+              <span className="font-bold text-gray-800">A full-service creative</span> agency designing and building inventive digital experiences across all platforms and brand touchpoints.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <button className="px-8 py-3 rounded-[12px] border-2 border-gray-300 text-[#112121] font-semibold text-[14px] hover:border-[#35CAA3] hover:text-[#35CAA3] transition-colors flex items-center gap-2">
+                Explore Our Services 
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 18l6-6-6-6"/></svg>
+              </button>
+              <button className="px-8 py-3 rounded-[12px] bg-[#FFD700] hover:bg-[#F0C800] text-[#112121] font-semibold text-[14px] transition-colors flex items-center gap-2 shadow-sm">
+                Book Your Free Trial, Now
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 18l6-6-6-6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────────── PROCESS OF YOUR PROJECT ─────────────── */}
+      <section className="bg-[#EBF8E8] w-full pt-10 pb-32 relative overflow-hidden">
+        <div className="w-full max-w-7xl mx-auto px-6 relative z-10">
+          <h2 className="text-[#112121] text-[32px] md:text-[42px] font-bold mb-16 md:pl-20">
+            Process Of Your <span className="text-[#35CAA3]">Project</span>
+          </h2>
+          
+          <div className="flex flex-wrap md:flex-nowrap items-center justify-center gap-6 max-w-[1300px] mx-auto px-10">
+            {/* Diamond 1 */}
+            <div className="mb-0 md:mb-32">
+              <ProcessDiamond text="Empathize" />
+            </div>
+            <ProcessArrow down />
+            {/* Diamond 2 */}
+            <div className="mt-0 md:mt-32">
+              <ProcessDiamond text="Define" />
+            </div>
+            <ProcessArrow up />
+            {/* Diamond 3 */}
+            <div className="mb-0 md:mb-32">
+              <ProcessDiamond text="Ideate" />
+            </div>
+            <ProcessArrow down />
+            {/* Diamond 4 */}
+            <div className="mt-0 md:mt-32">
+              <ProcessDiamond text="Prototype" />
+            </div>
+            <ProcessArrow up />
+            {/* Diamond 5 */}
+            <div className="mb-0 md:mb-32">
+              <ProcessDiamond text="Qualitative test" />
+            </div>
+            <ProcessArrow down />
+            {/* Diamond 6 */}
+            <div className="mt-0 md:mt-32">
+              <ProcessDiamond text="Quantitative test" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─────────────── BRANDING ON DEMAND SECTION ─────────────── */}
+      <section className="w-full bg-[#f9f9f9] relative overflow-hidden py-32 md:py-48 min-h-[900px] flex items-center justify-center">
+        {/* Background Text */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-0">
+          <h1 className="text-[14vw] leading-[0.9] font-bold text-[#112121] uppercase tracking-tight text-center font-['Poppins']">
+            Unlimited<br/>Branding<br/>On Demand
+          </h1>
+        </div>
+
+        {/* Circular Badge */}
+        <div className="absolute top-8 right-8 md:top-16 md:right-16 w-24 h-24 md:w-[130px] md:h-[130px] bg-black/90 rounded-full flex items-center justify-center hover:scale-110 transition-transform cursor-pointer z-50 shadow-xl">
+          <svg viewBox="0 0 100 100" className="w-full h-full animate-[spin_10s_linear_infinite]">
+            <path id="circlePath" d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" fill="none" />
+            <text>
+              <textPath href="#circlePath" fill="white" fontSize="11" letterSpacing="4.5">
+                Book Now &gt; Book Now &gt; Book Now &gt;
+              </textPath>
+            </text>
+          </svg>
+          <div className="absolute w-[58%] h-[58%] bg-[#FCC334] rounded-full flex items-center justify-center shadow-inner">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1l2.1-2.1M17 7l2.1-2.1"/></svg>
+          </div>
+        </div>
+
+        {/* Floating Cards Container */}
+        <div className="relative w-full max-w-6xl h-[600px] z-10 hidden md:block pointer-events-none">
+          {/* Price Plan Card */}
+          <div className="absolute left-[3%] top-[3%] w-[392px] h-[221px] bg-white/95 backdrop-blur shadow-2xl rounded-[21px] rotate-[-14deg] pointer-events-auto hover:rotate-0 transition-transform duration-500 cursor-pointer border border-gray-100 flex flex-col justify-center items-start pl-8 overflow-hidden">
+            <div className="absolute top-[-10px] right-20 w-[103px] h-[72px] bg-[#B5ECD4] rounded-full -z-10" />
+            <h3 className="text-[#030A22] text-[48px] font-bold leading-tight mb-0 z-10">Price Plan</h3>
+            <img src={imgCTA} alt="Price Plan" className="absolute right-[-60px] top-4 w-[250px] aspect-square object-cover mix-blend-multiply opacity-50 z-0" />
+            <div className="text-black font-bold text-[16px] uppercase tracking-wider flex items-center hover:text-green-600 transition-colors mt-20 z-10">
+              &gt;&gt; See Detail
+            </div>
+          </div>
+
+          {/* Services Card */}
+          <div className="absolute right-[5%] top-[5%] w-[306px] h-[172px] bg-[#E1EA78] shadow-2xl rounded-[16px] rotate-[-5deg] pointer-events-auto hover:rotate-0 transition-transform duration-500 cursor-pointer flex flex-col justify-center items-start pl-6 overflow-hidden">
+            <div className="absolute top-[-5px] right-10 w-[76px] h-[46px] bg-[#B5ECD4] rounded-full -z-10" />
+            <h3 className="text-[#030A22] text-[38px] font-bold leading-tight mb-0 z-10">Services</h3>
+            <img src={imgServices} alt="Services" className="absolute right-[-40px] top-2 w-[180px] aspect-square object-cover mix-blend-multiply opacity-50 z-0" />
+            <div className="text-black font-bold text-[12px] uppercase tracking-wider flex items-center hover:opacity-70 transition-opacity mt-14 z-10">
+              &gt;&gt; See Detail
+            </div>
+          </div>
+
+          {/* Join Us Card */}
+          <div className="absolute left-[15%] bottom-[5%] w-[335px] h-[189px] bg-[#25A158] shadow-2xl rounded-[18px] rotate-[-32deg] pointer-events-auto hover:rotate-0 transition-transform duration-500 cursor-pointer flex flex-col justify-center items-start pl-8 overflow-hidden">
+            <h3 className="text-[#F7F9D9] text-[41px] font-bold leading-tight mb-0 z-10">Join US</h3>
+            <img src={imgJoinUs} alt="Join US" className="absolute right-[-40px] top-2 w-[200px] aspect-square object-cover mix-blend-overlay opacity-50 z-0" />
+            <div className="text-[#FAFBFB] font-bold text-[13px] uppercase tracking-wider flex items-center hover:opacity-70 transition-opacity mt-16 z-10">
+              &gt;&gt; See Detail
+            </div>
+          </div>
+
+          {/* We are Hiring Card */}
+          <div className="absolute right-[10%] bottom-[15%] w-[392px] h-[221px] bg-[#B7F9D2] shadow-2xl rounded-[21px] rotate-[9deg] pointer-events-auto hover:rotate-0 transition-transform duration-500 cursor-pointer flex flex-col justify-center items-start pl-8 overflow-hidden">
+            <h3 className="text-[#030A22] text-[48px] font-bold leading-tight mb-0 z-10">We are Hiring</h3>
+            <img src={imgHiring} alt="We are Hiring" className="absolute right-[-40px] top-2 w-[220px] aspect-square object-cover mix-blend-multiply opacity-50 z-0" />
+            <div className="text-black font-bold text-[16px] uppercase tracking-wider flex items-center hover:opacity-70 transition-opacity mt-20 z-10">
+              &gt;&gt; See Detail
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile View (Stacked) */}
+        <div className="relative w-full z-10 flex flex-col items-center gap-8 md:hidden px-4 mt-32">
+           <div className="w-full max-w-[320px] bg-white/95 shadow-xl rounded-[20px] p-6 border border-gray-100 flex flex-col items-center">
+             <h3 className="text-[#030A22] text-[36px] font-bold mb-4">Price Plan</h3>
+             <img src={imgCTA} className="w-[150px] aspect-square rounded-[12px] mb-4 object-cover" />
+             <div className="text-black font-bold text-[14px] text-center uppercase tracking-wider">&gt;&gt; See Detail</div>
+           </div>
+           
+           <div className="w-full max-w-[320px] bg-[#E1EA78] shadow-xl rounded-[20px] p-6 flex flex-col items-center">
+             <h3 className="text-[#030A22] text-[32px] font-bold mb-4">Services</h3>
+             <img src={imgServices} className="w-[150px] aspect-square rounded-[12px] mb-4 object-cover" />
+             <div className="text-black font-bold text-[14px] text-center uppercase tracking-wider">&gt;&gt; See Detail</div>
+           </div>
+
+           <div className="w-full max-w-[320px] bg-[#25A158] shadow-xl rounded-[20px] p-6 flex flex-col items-center">
+             <h3 className="text-[#F7F9D9] text-[36px] font-bold mb-4">Join US</h3>
+             <img src={imgJoinUs} className="w-[150px] aspect-square rounded-[12px] mb-4 object-cover" />
+             <div className="text-[#FAFBFB] font-bold text-[14px] text-center uppercase tracking-wider">&gt;&gt; See Detail</div>
+           </div>
+
+           <div className="w-full max-w-[320px] bg-[#B7F9D2] shadow-xl rounded-[20px] p-6 flex flex-col items-center">
+             <h3 className="text-[#030A22] text-[36px] font-bold mb-4">We are Hiring</h3>
+             <img src={imgHiring} className="w-[150px] aspect-square rounded-[12px] mb-4 object-cover" />
+             <div className="text-black font-bold text-[14px] text-center uppercase tracking-wider">&gt;&gt; See Detail</div>
+           </div>
+        </div>
+      </section>
+
+      {/* ─────────────── DARK BOTTOM WRAPPER ─────────────── */}
+      <div className="relative w-full bg-[#112121] pt-16 pb-16">
+
+        {/* ─────────────── OUR TEAMS SECTION ─────────────── */}
+        <section className="w-full max-w-7xl mx-auto px-6 pt-16 pb-8 text-white relative z-10">
+          <div className="flex flex-col items-start mb-12">
+            <div className="flex items-center gap-2 mb-4">
+              <h2 className="text-[40px] md:text-[50px] font-bold leading-tight">
+                Our <span className="text-[#5DE299]">Teams</span>
+              </h2>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5DE299" strokeWidth="2.5" className="animate-pulse">
+                <path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.5 5.5l2.8 2.8M15.7 15.7l2.8 2.8M5.5 18.5l2.8-2.8M15.7 8.3l2.8-2.8"/>
+              </svg>
+            </div>
+            <p className="text-white/75 text-[16px] max-w-2xl leading-relaxed">
+              We are Designer, Developer, Programmer, Marketing specialist working hard to transform your next idea into a big success.
+            </p>
+          </div>
+
+          {/* Team Cards Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center">
+            {/* Card 1: Akshay */}
+            <div className="w-full max-w-[270px] bg-linear-to-b from-[#A4F2CC] to-[#DDF7EB] rounded-[24px] p-5 flex flex-col justify-between shadow-lg hover:scale-[1.03] transition-transform duration-300">
+              <div className="w-full aspect-230/280 rounded-[18px] overflow-hidden mb-5">
+                <img src={imgAkshay} className="w-full h-full object-cover object-top" />
+              </div>
+              <div>
+                <h3 className="text-[#112121] text-[20px] font-bold mb-1">Akshay</h3>
+                <div className="flex items-center gap-2">
+                  <img src={imgCredLogoSmall} className="w-4 h-4 object-contain" />
+                  <span className="text-[#112121]/75 text-[14px] font-semibold">CRED</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 2: Kunal */}
+            <div className="w-full max-w-[270px] bg-linear-to-b from-[#F5DE7B] to-[#FDF4D1] rounded-[24px] p-5 flex flex-col justify-between shadow-lg hover:scale-[1.03] transition-transform duration-300">
+              <div className="w-full aspect-230/280 rounded-[18px] overflow-hidden mb-5">
+                <img src={imgKunal} className="w-full h-full object-cover object-top" />
+              </div>
+              <div>
+                <h3 className="text-[#112121] text-[20px] font-bold mb-1">Kunal</h3>
+                <div className="flex items-center gap-2">
+                  <img src={imgMeeshoLogoSmall} className="w-4 h-4 object-contain" />
+                  <span className="text-[#112121]/75 text-[14px] font-semibold">meesho</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 3: Pratab */}
+            <div className="w-full max-w-[270px] bg-linear-to-b from-[#6EE7B7] to-[#D1FAE5] rounded-[24px] p-5 flex flex-col justify-between shadow-lg hover:scale-[1.03] transition-transform duration-300">
+              <div className="w-full aspect-230/280 rounded-[18px] overflow-hidden mb-5">
+                <img src={imgPratab} className="w-full h-full object-cover object-top" />
+              </div>
+              <div>
+                <h3 className="text-[#112121] text-[20px] font-bold mb-1">Pratab</h3>
+                <div className="flex items-center gap-2">
+                  <img src={imgCredLogoSmall} className="w-4 h-4 object-contain" />
+                  <span className="text-[#112121]/75 text-[14px] font-semibold">CRED</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 4: Anuj */}
+            <div className="w-full max-w-[270px] bg-linear-to-b from-[#FCA5A5] to-[#FEE2E2] rounded-[24px] p-5 flex flex-col justify-between shadow-lg hover:scale-[1.03] transition-transform duration-300">
+              <div className="w-full aspect-230/280 rounded-[18px] overflow-hidden mb-5">
+                <img src={imgAnuj} className="w-full h-full object-cover object-top" />
+              </div>
+              <div>
+                <h3 className="text-[#112121] text-[20px] font-bold mb-1">Anuj</h3>
+                <div className="flex items-center gap-2">
+                  <img src={imgCredLogoSmall} className="w-4 h-4 object-contain" />
+                  <span className="text-[#112121]/75 text-[14px] font-semibold">CRED</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* News Article Section */}
+        <section className="w-full max-w-7xl mx-auto px-6 py-16 text-white relative z-10">
+          <h2 className="text-[40px] md:text-[50px] font-bold mb-12">
+            News <span className="text-[#F5DE7B]">Article</span>
+          </h2>
+
+          {/* Carousel Container */}
+          <div className="relative w-full flex items-center">
+            {/* Left navigation arrow */}
+            <button className="absolute -left-4 md:-left-8 z-10 w-12 h-12 rounded-full border-2 border-white/20 bg-[#112121] flex items-center justify-center text-white hover:bg-white hover:text-[#112121] hover:border-white transition-colors">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            
+            {/* Horizontal scroll container with scrollbar hidden */}
+            <div className="w-full overflow-x-auto scrollbar-hide flex gap-6 pb-6 px-2">
+              {/* Card 1: Economic Times */}
+              <div className="w-[300px] h-[400px] shrink-0 bg-[#E8F8F0] rounded-[24px] p-5 flex flex-col justify-between shadow-lg relative group">
+                <div className="w-full h-[280px] rounded-[18px] overflow-hidden bg-white shadow-inner flex items-center justify-center">
+                  <img src={imgETScreenshot} className="w-full h-full object-cover object-top group-hover:scale-[1.02] transition-transform duration-300" />
+                </div>
+                <div className="flex items-center mt-4">
+                  <img src={imgETLogo} className="h-6 object-contain" />
+                </div>
+              </div>
+
+              {/* Card 2: TOI */}
+              <div className="w-[300px] h-[400px] shrink-0 bg-[#E8F8F0] rounded-[24px] p-5 flex flex-col justify-between shadow-lg relative group">
+                <div className="w-full h-[280px] rounded-[18px] overflow-hidden bg-white shadow-inner flex items-center justify-center">
+                  <img src={imgTOIScreenshot} className="w-full h-full object-cover object-top group-hover:scale-[1.02] transition-transform duration-300" />
+                </div>
+                <div className="flex items-center mt-4">
+                  <img src={imgTOILogo} className="h-6 object-contain" />
+                </div>
+              </div>
+
+              {/* Card 3: Inc42 */}
+              <div className="w-[300px] h-[400px] shrink-0 bg-[#E8F8F0] rounded-[24px] p-5 flex flex-col justify-between shadow-lg relative group">
+                <div className="w-full h-[280px] rounded-[18px] overflow-hidden bg-white shadow-inner flex items-center justify-center">
+                  <img src={imgInc42Screenshot} className="w-full h-full object-cover object-top group-hover:scale-[1.02] transition-transform duration-300" />
+                </div>
+                <div className="flex items-center mt-4">
+                  <img src={imgInc42Logo} className="h-6 object-contain" />
+                </div>
+              </div>
+
+              {/* Card 4: YourStory */}
+              <div className="w-[300px] h-[400px] shrink-0 bg-[#E8F8F0] rounded-[24px] p-5 flex flex-col justify-between shadow-lg relative group">
+                <div className="w-full h-[280px] rounded-[18px] overflow-hidden bg-white shadow-inner flex items-center justify-center">
+                  <img src={imgYSScreenshot} className="w-full h-full object-cover object-top group-hover:scale-[1.02] transition-transform duration-300" />
+                </div>
+                <div className="flex items-center mt-4">
+                  <img src={imgYSLogo} className="h-6 object-contain" />
+                </div>
+              </div>
+            </div>
+
+            {/* Right navigation arrow */}
+            <button className="absolute -right-4 md:-right-8 z-10 w-12 h-12 rounded-full border-2 border-white/20 bg-[#112121] flex items-center justify-center text-white hover:bg-white hover:text-[#112121] hover:border-white transition-colors">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+        </section>
+
+        {/* Featured In Section */}
+        <section className="w-full max-w-5xl mx-auto px-6 py-16 text-center relative z-10">
+          <div className="relative bg-[#D6F6E5] rounded-[32px] px-8 py-10 shadow-lg border border-[#B1EAC8] flex flex-col items-center">
+            {/* Yellow Tag */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#F5DE7B] text-[#112121] text-[14px] font-bold px-5 py-2 rounded-full flex items-center gap-1.5 shadow-md border border-[#E1C65E]">
+              <span className="w-2.5 h-2.5 bg-[#5DE299] rounded-full animate-ping" />
+              Featured In
+            </div>
+
+            {/* Logos Row */}
+            <div className="w-full flex items-center justify-between gap-6 overflow-x-auto scrollbar-hide py-4 px-2 mt-2">
+              <img src={imgGrowwWebp} className="h-8 object-contain shrink-0" />
+              <img src={imgSliceWebp} className="h-8 object-contain shrink-0" />
+              <img src={imgBharatPeWebp} className="h-8 object-contain shrink-0" />
+              <img src={imgPostmanWebp} className="h-8 object-contain shrink-0" />
+              <img src={imgGrofersWebp} className="h-8 object-contain shrink-0" />
+              <img src={imgCredWebp} className="h-8 object-contain shrink-0" />
+            </div>
+          </div>
+        </section>
+
+        {/* Wave divider graphic */}
+        <div className="w-full overflow-hidden leading-0 -mb-1 relative z-10">
+          <img src={imgWaveBottom} className="w-full h-auto object-cover min-h-[80px]" />
+        </div>
+      </div>
+
+      {/* ─────────────── NEW SECTIONS WITH WHITE BACKGROUND ─────────────── */}
+      <div className="bg-[#FAFBFB] py-20 relative">
+        {/* 10 Errors Signs Section */}
+        <section className="w-full max-w-7xl mx-auto px-6 py-12 flex flex-col lg:flex-row gap-12 items-center">
+          <div className="lg:w-3/5">
+            <div className="flex justify-between items-end mb-8">
+              <h2 className="text-[#112121] text-[32px] md:text-[42px] font-bold leading-tight max-w-xl">
+                <span className="text-[#35CAA3]">10 Errors signs</span> - that your website needs rebuild or maintenance
+              </h2>
+              <a href="#" className="text-[#35CAA3] font-bold text-sm flex items-center gap-1 hover:underline shrink-0">
+                View All 
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Card 1 */}
+              <div className="bg-[#EAF8F2] p-5 rounded-[20px] flex items-center gap-4 hover:shadow-md transition-shadow">
+                <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center shadow-sm shrink-0">
+                  <img src={imgIconClean} className="w-8 h-8 object-contain" />
+                </div>
+                <div>
+                  <h4 className="text-[#112121] font-bold text-[16px]">Clean UI Design</h4>
+                  <span className="text-[#112121]/50 text-xs font-semibold uppercase tracking-wider">View More</span>
+                </div>
+              </div>
+              
+              {/* Card 2 */}
+              <div className="bg-[#EAF8F2] p-5 rounded-[20px] flex items-center gap-4 hover:shadow-md transition-shadow">
+                <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center shadow-sm shrink-0">
+                  <img src={imgIconSEO} className="w-8 h-8 object-contain" />
+                </div>
+                <div>
+                  <h4 className="text-[#112121] font-bold text-[16px]">SEO</h4>
+                  <span className="text-[#112121]/50 text-xs font-semibold uppercase tracking-wider">View More</span>
+                </div>
+              </div>
+
+              {/* Card 3 */}
+              <div className="bg-[#EAF8F2] p-5 rounded-[20px] flex items-center gap-4 hover:shadow-md transition-shadow">
+                <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center shadow-sm shrink-0">
+                  <img src={imgIconResearch} className="w-8 h-8 object-contain" />
+                </div>
+                <div>
+                  <h4 className="text-[#112121] font-bold text-[16px]">Research</h4>
+                  <span className="text-[#112121]/50 text-xs font-semibold uppercase tracking-wider">View More</span>
+                </div>
+              </div>
+
+              {/* Card 4 */}
+              <div className="bg-[#EAF8F2] p-5 rounded-[20px] flex items-center gap-4 hover:shadow-md transition-shadow">
+                <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center shadow-sm shrink-0">
+                  <img src={imgIconTraffic} className="w-8 h-8 object-contain" />
+                </div>
+                <div>
+                  <h4 className="text-[#112121] font-bold text-[16px]">Traffic</h4>
+                  <span className="text-[#112121]/50 text-xs font-semibold uppercase tracking-wider">View More</span>
+                </div>
+              </div>
+
+              {/* Card 5 */}
+              <div className="bg-[#EAF8F2] p-5 rounded-[20px] flex items-center gap-4 hover:shadow-md transition-shadow">
+                <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center shadow-sm shrink-0">
+                  <img src={imgIconBriefing} className="w-8 h-8 object-contain" />
+                </div>
+                <div>
+                  <h4 className="text-[#112121] font-bold text-[16px]">Briefing</h4>
+                  <span className="text-[#112121]/50 text-xs font-semibold uppercase tracking-wider">View More</span>
+                </div>
+              </div>
+
+              {/* Card 6 */}
+              <div className="bg-[#EAF8F2] p-5 rounded-[20px] flex items-center gap-4 hover:shadow-md transition-shadow">
+                <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center shadow-sm shrink-0">
+                  <img src={imgIconQuality} className="w-8 h-8 object-contain" />
+                </div>
+                <div>
+                  <h4 className="text-[#112121] font-bold text-[16px]">Quality</h4>
+                  <span className="text-[#112121]/50 text-xs font-semibold uppercase tracking-wider">View More</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right illustration panel */}
+          <div className="lg:w-2/5 flex flex-col items-center justify-center">
+            <img src={imgErrorsRobot} className="w-[300px] md:w-[360px] object-contain mb-8" />
+            <button className="px-8 py-3 rounded-[12px] bg-[#112121] text-white font-bold text-[15px] hover:bg-black transition-colors flex items-center gap-2 shadow-lg">
+              Let Fix These Errors
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </section>
+
+        {/* Our Recent Blogs Section */}
+        <section className="w-full max-w-7xl mx-auto px-6 py-20">
+          <h2 className="text-[#112121] text-[32px] md:text-[40px] font-bold mb-10 text-left">
+            Our Recent Blogs
+          </h2>
+
+          <div className="flex flex-col lg:flex-row gap-8">
+            {/* Left stacked blogs */}
+            <div className="lg:w-7/12 flex flex-col gap-6">
+              {/* Blog 1 */}
+              <div className="bg-white rounded-[24px] border border-gray-100 p-5 flex flex-col md:flex-row gap-5 hover:shadow-lg transition-shadow duration-300">
+                <div className="md:w-2/5 aspect-16/10 rounded-[16px] overflow-hidden shrink-0">
+                  <img src={imgBlogDetailDelight} className="w-full h-full object-cover" />
+                </div>
+                <div className="flex flex-col justify-between py-1">
+                  <div>
+                    <span className="text-gray-400 text-xs font-medium uppercase tracking-wider">November 18, 2014</span>
+                    <h3 className="text-[#112121] text-[20px] font-bold mt-2 mb-2 leading-snug">Three Pillars of User Delight</h3>
+                    <p className="text-gray-500 text-[13px] leading-relaxed line-clamp-2">
+                      Delight can be experienced viscerally, behaviourally, and reflectively. A great design is ...
+                    </p>
+                  </div>
+                  <div className="flex gap-2 mt-4">
+                    <span className="px-3 py-1 bg-purple-50 text-purple-600 rounded-full text-[11px] font-semibold">Research</span>
+                    <span className="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-[11px] font-semibold">UI UX</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Blog 2 */}
+              <div className="bg-white rounded-[24px] border border-gray-100 p-5 flex flex-col md:flex-row gap-5 hover:shadow-lg transition-shadow duration-300">
+                <div className="md:w-2/5 aspect-16/10 rounded-[16px] overflow-hidden shrink-0">
+                  <img src={imgBlogDetailMapping} className="w-full h-full object-cover" />
+                </div>
+                <div className="flex flex-col justify-between py-1">
+                  <div>
+                    <span className="text-gray-400 text-xs font-medium uppercase tracking-wider">September 26, 2017</span>
+                    <h3 className="text-[#112121] text-[20px] font-bold mt-2 mb-2 leading-snug">UX Mapping Methods</h3>
+                    <p className="text-gray-500 text-[13px] leading-relaxed line-clamp-2">
+                      Visual design principles can be applied consistently throughout the process of creating a polished UX map...
+                    </p>
+                  </div>
+                  <div className="flex gap-2 mt-4">
+                    <span className="px-3 py-1 bg-purple-50 text-purple-600 rounded-full text-[11px] font-semibold">Research</span>
+                    <span className="px-3 py-1 bg-green-50 text-green-600 rounded-full text-[11px] font-semibold">UI Design</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right featured blog card */}
+            <div className="lg:w-5/12">
+              <div className="bg-white rounded-[24px] border border-gray-100 p-5 h-full flex flex-col justify-between hover:shadow-lg transition-shadow duration-300">
+                <div>
+                  <div className="aspect-16/10 rounded-[16px] overflow-hidden mb-5">
+                    <img src={imgBlogDetailAgile} className="w-full h-full object-cover" />
+                  </div>
+                  <span className="text-gray-400 text-xs font-medium uppercase tracking-wider">March 13, 2014</span>
+                  <h3 className="text-[#112121] text-[24px] font-bold mt-2 mb-3 leading-snug">Agile Development Projects and Usability</h3>
+                  <p className="text-gray-500 text-[14px] leading-relaxed">
+                    Agile methods aim to overcome usability barriers in traditional development, but post new threats to user experience quality.
+                  </p>
+                </div>
+                <div className="flex gap-2 mt-6">
+                  <span className="px-3 py-1 bg-orange-50 text-orange-600 rounded-full text-[11px] font-semibold">Programming</span>
+                  <span className="px-3 py-1 bg-purple-50 text-purple-600 rounded-full text-[11px] font-semibold">Research</span>
+                  <span className="px-3 py-1 bg-pink-50 text-pink-600 rounded-full text-[11px] font-semibold">Development</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQs Section */}
+        <section className="w-full max-w-3xl mx-auto px-6 py-16">
+          <h2 className="text-[#112121] text-[36px] font-bold text-center mb-10 font-serif">
+            FAQs
+          </h2>
+
+          <div className="flex flex-col gap-4">
+            {faqs.map((faq, idx) => {
+              const isOpen = openFAQIndex === idx;
+              return (
+                <div key={idx} className="bg-[#EAF8F2] rounded-[16px] overflow-hidden transition-all duration-300 shadow-sm border border-transparent hover:border-[#35CAA3]/20">
+                  <button 
+                    onClick={() => setOpenFAQIndex(isOpen ? null : idx)}
+                    className="w-full px-6 py-5 flex items-center justify-between text-left font-bold text-[#112121] text-[15px] md:text-[16px] focus:outline-none"
+                  >
+                    <span>{faq.q}</span>
+                    <svg 
+                      width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" 
+                      className={`transform transition-transform duration-300 shrink-0 ml-4 ${isOpen ? 'rotate-180' : ''}`}
+                    >
+                      <path d="M6 9l6 6 6-6"/>
+                    </svg>
+                  </button>
+                  
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={isOpen ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: 'easeInOut' }}
+                    className="overflow-hidden"
+                  >
+                    <div className="px-6 pb-5 text-gray-600 text-[14px] leading-relaxed border-t border-[#35CAA3]/10 pt-3">
+                      {faq.a}
+                    </div>
+                  </motion.div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* We Are Hiring Scattered Cards Section */}
+        <section className="w-full max-w-6xl mx-auto px-6 py-20 relative h-[500px] overflow-hidden hidden md:block">
+          <div className="absolute left-[5%] top-[10%] z-10 -rotate-12 hover:rotate-0 hover:scale-[1.05] hover:z-50 transition-all duration-300 cursor-pointer shadow-xl rounded-[18px] overflow-hidden w-[240px]">
+            <img src={imgHiringCardGroup} className="w-full h-auto" />
+          </div>
+          <div className="absolute left-[38%] top-[35%] z-20 rotate-6 hover:rotate-0 hover:scale-[1.05] hover:z-50 transition-all duration-300 cursor-pointer shadow-xl rounded-[18px] overflow-hidden w-[260px]">
+            <img src={imgHiringCardGroup} className="w-full h-auto" />
+          </div>
+          <div className="absolute right-[5%] top-[15%] z-10 rotate-15 hover:rotate-0 hover:scale-[1.05] hover:z-50 transition-all duration-300 cursor-pointer shadow-xl rounded-[18px] overflow-hidden w-[250px]">
+            <img src={imgHiringCardGroup} className="w-full h-auto" />
+          </div>
+          <div className="absolute left-[15%] bottom-[5%] z-20 rotate-[-8deg] hover:rotate-0 hover:scale-[1.05] hover:z-50 transition-all duration-300 cursor-pointer shadow-xl rounded-[18px] overflow-hidden w-[230px]">
+            <img src={imgHiringCardGroup} className="w-full h-auto" />
+          </div>
+          <div className="absolute right-[22%] bottom-[8%] z-30 rotate-[-4deg] hover:rotate-0 hover:scale-[1.05] hover:z-50 transition-all duration-300 cursor-pointer shadow-xl rounded-[18px] overflow-hidden w-[270px]">
+            <img src={imgHiringCardGroup} className="w-full h-auto" />
+          </div>
+        </section>
+
+        {/* Mobile Hiring View */}
+        <section className="w-full max-w-md mx-auto px-6 py-8 flex flex-col gap-6 md:hidden">
+          <div className="shadow-lg rounded-[18px] overflow-hidden w-full max-w-[280px] mx-auto -rotate-3">
+            <img src={imgHiringCardGroup} className="w-full h-auto" />
+          </div>
+        </section>
+
+        {/* ─────────────── LET'S TALK CTA ─────────────── */}
+        <section className="w-full max-w-5xl mx-auto px-6 py-16">
+          <div className="w-full bg-[#5DE299] rounded-[24px] p-8 md:p-12 flex flex-col lg:flex-row items-center justify-between shadow-2xl relative overflow-hidden">
+            {/* Left side text and support rows */}
+            <div className="lg:w-3/5 z-10">
+              <h2 className="text-[#112121] text-[28px] md:text-[36px] font-bold max-w-md mb-3 leading-tight font-['Space_Grotesk']">
+                Let's Talk To Build Your Dream Project
+              </h2>
+              <p className="text-[#112121]/70 text-[14px] leading-relaxed max-w-lg mb-8 font-medium">
+                A digital agency is a business you hire to outsource your digital marketing efforts, instead of handling in-house.
+              </p>
+
+              {/* Badges Row */}
+              <div className="flex flex-col sm:flex-row gap-4">
+                <div className="bg-white/90 p-4 rounded-2xl flex items-center gap-3 shadow-sm border border-white/50 shrink-0">
+                  <div className="w-10 h-10 bg-[#EAF8F2] rounded-xl flex items-center justify-center shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#35CAA3" strokeWidth="2.5"><path d="M3 18v-6a9 9 0 0 1 18 0v6M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3"/></svg>
+                  </div>
+                  <div>
+                    <h5 className="text-[#112121] text-[13px] font-bold">Support</h5>
+                    <span className="text-[#112121]/60 text-[11px] font-bold">24/7</span>
+                  </div>
+                </div>
+
+                <div className="bg-white/90 p-4 rounded-2xl flex items-center gap-3 shadow-sm border border-white/50 shrink-0">
+                  <div className="w-10 h-10 bg-[#EAF8F2] rounded-xl flex items-center justify-center shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#35CAA3" strokeWidth="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                  </div>
+                  <div>
+                    <h5 className="text-[#112121] text-[13px] font-bold">Call Us</h5>
+                    <span className="text-[#112121]/60 text-[11px] font-bold">+91 8009800980</span>
+                  </div>
+                </div>
+
+                <div className="bg-white/90 p-4 rounded-2xl flex items-center gap-3 shadow-sm border border-white/50 shrink-0">
+                  <div className="w-10 h-10 bg-[#EAF8F2] rounded-xl flex items-center justify-center shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#35CAA3" strokeWidth="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+                  </div>
+                  <div>
+                    <h5 className="text-[#112121] text-[13px] font-bold">Email Us</h5>
+                    <span className="text-[#112121]/60 text-[11px] font-bold">support@mafia.com</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right side illustration */}
+            <div className="lg:w-2/5 flex justify-center lg:justify-end mt-8 lg:mt-0 z-10">
+              <img src={imgCtaAirplane} className="w-[280px] md:w-[320px] object-contain drop-shadow-2xl" />
+            </div>
+          </div>
+        </section>
+      </div>
     </motion.div>
   );
 }
+
+const ServiceItem = ({ text }: { text: string }) => (
+  <div className="flex items-center gap-3 mb-4">
+    <div className="w-[18px] h-[18px] rounded-full border border-[#35CAA3] bg-[#E8F8E8] flex items-center justify-center shrink-0">
+      <div className="w-[8px] h-[8px] bg-[#35CAA3] rounded-full" />
+    </div>
+    <span className="text-[#112121] text-[14px] font-medium">{text}</span>
+  </div>
+);
+
+const ProcessDiamond = ({ text }: { text: string }) => (
+  <div className="relative w-[120px] h-[120px] md:w-[140px] md:h-[140px] shrink-0">
+    <div className="absolute inset-0 rotate-45 border-dashed border-[#A3A3A3] border rounded-[24px]" />
+    <div className="absolute inset-[6px] rotate-45 bg-[#0A0A0A] rounded-[20px] shadow-[0_10px_20px_rgba(0,0,0,0.15)] flex items-center justify-center border border-[#333]" />
+    <div className="absolute inset-0 flex flex-col items-center justify-center z-10 px-2 text-center pointer-events-none">
+      <span className="text-white text-[12px] md:text-[13px] font-medium">{text}</span>
+    </div>
+  </div>
+);
+
+const ProcessArrow = ({ up }: { up?: boolean, down?: boolean }) => (
+  <div className="hidden md:flex w-8 h-8 items-center justify-center shrink-0">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#A855F7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" 
+      className={up ? "-rotate-45 -translate-y-4" : "rotate-45 translate-y-4"}>
+      <path d="M5 12h14M12 5l7 7-7 7"/>
+    </svg>
+  </div>
+);

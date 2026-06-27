@@ -124,7 +124,7 @@ export default function Footer({ setActiveTab }: FooterProps) {
       </div>
 
       {/* Copyright Footer */}
-      <div className="max-w-7xl mx-auto mt-12 pt-8 border-t border-[rgba(255,255,255,0.1)] flex flex-col md:flex-row justify-between items-center gap-4 text-white/60 text-sm">
+      <div className="max-w-7xl mx-auto mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-white/60 text-sm">
         <p>Copyright © 2022 DMafia. All Rights Reserved.</p>
         <div className="flex gap-6">
           <a href="#privacy" className="hover:text-[#36ed81] transition-colors">Privacy Policy</a>
