@@ -16,7 +16,7 @@ export default function Footer({ setActiveTab }: FooterProps) {
   };
 
   return (
-    <div className="bg-[#122] text-white py-16 px-6 md:px-16 border-t border-[rgba(255,255,255,0.05)] w-full font-['Poppins']">
+    <div className="bg-[#122] text-white pt-16 pb-16 xl:pt-[180px] px-6 md:px-16 border-t border-[rgba(255,255,255,0.05)] w-full font-['Poppins']">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
         {/* Left Column: Logo & Contact Info */}
         <div className="lg:col-span-2 flex flex-col gap-6">

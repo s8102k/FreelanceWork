@@ -1,6 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Epilogue:ital,wght@0,100..900;1,100..900&family=Inter:wght@100..900&family=Italianno&family=Manrope:wght@200..800&family=Poppins:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap');
 @import "tailwindcss";
 
+@theme {
+  --font-space: "Space Grotesk", sans-serif;
+  --font-poppins: "Poppins", sans-serif;
+  --font-jost: "Jost", sans-serif;
+  --font-italianno: "Italianno", cursive;
+  --font-dm: "DM Sans", sans-serif;
+  --font-inter: "Inter", sans-serif;
+  --font-manrope: "Manrope", sans-serif;
+  --font-rubik: "Rubik", sans-serif;
+}
+
 /* Custom Keyframe Animations */
 @keyframes infinite-scroll {
   0% {
@@ -132,6 +143,15 @@
   scrollbar-width: none;
 }
 
+/* Hide browser scrollbar globally */
+html, body {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+html::-webkit-scrollbar, body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
 /* Read More hover button with arrow slide-in effect */
 .read-more-btn {
   display: inline-flex;
@@ -240,4 +260,35 @@
 }
 .hero-hover-container:hover .doodle-br {
   transform: translate(0, 0);
+}
+
+/* Hiring Card hover variants style matching Figma specs (Variant2) */
+.hiring-card {
+  background-color: #B7F9D2;
+  border: 3px solid transparent;
+  border-radius: 21px;
+  cursor: pointer;
+  user-select: none;
+  position: absolute;
+  overflow: hidden;
+  z-index: 20;
+}
+.hiring-card:hover {
+  border-color: #000000 !important;
+}
+
+/* Slide up entrance animation for hero banner */
+@keyframes slide-up-hero {
+  0% {
+    opacity: 0;
+    transform: translateY(80px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up-hero {
+  animation: slide-up-hero 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
